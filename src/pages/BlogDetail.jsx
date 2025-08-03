@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './BlogDetail.css';
-const apiUrl  = process.env.API_URL;
+
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -25,7 +25,7 @@ const BlogDetail = () => {
 
   const fetchBlog = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/blogs/${id}`);
+      const response = await axios.get(`http://localhost:5000/api/blogs/${id}`);
       setBlog(response.data);
       setLoading(false);
     } catch (err) {
@@ -45,7 +45,7 @@ const BlogDetail = () => {
     }
 
     try {
-      await axios.delete(`${apiUrl}/blogs/${id}`, {
+      await axios.delete(`http://localhost:5000/api/blogs/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
